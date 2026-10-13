@@ -850,13 +850,17 @@ function drawClosingPage(sp, pageNo) {
   header(ctx, 'Zárás', side, pageNo);
   ctx.textAlign = 'center';
   ctx.fillStyle = RUBRIC; ctx.font = `700 66px ${F_DECOR}`;
-  wrapPlain(ctx, 'KÖSZÖNJÜK A FIGYELMET!', m.cw - 20).forEach((l, i) => ctx.fillText(l, cx, 360 + i * 84));
+  ['KÖSZÖNJÜK', 'A FIGYELMET!'].forEach((l, i) => ctx.fillText(l, cx, 360 + i * 84));
   ctx.fillStyle = INK; ctx.font = `italic 400 52px ${F_BODY}`; ctx.fillText('Kérdések?', cx, 560);
   drawRule(ctx, cx - 220, cx + 220, 626);
-  ctx.fillStyle = RUBRIC; ctx.font = `600 23px ${F_DISPLAY}`; drawSpaced(ctx, 'Felhasznált források', cx, 780, 5, 'center');
-  ctx.textAlign = 'left'; let y = 846;
+  // credit – jól láthatóan, a források fölött
+  ctx.fillStyle = RUBRIC; ctx.font = `700 36px ${F_DISPLAY}`; ctx.textAlign = 'center'; ctx.fillText('Made with Claude Code Fable 5.1', cx, 700);
+  fleuron(ctx, cx - 335, 694, 1, 12, GOLD); fleuron(ctx, cx + 335, 694, 1, 12, GOLD);
+  ctx.fillStyle = RUBRIC; ctx.font = `600 23px ${F_DISPLAY}`; drawSpaced(ctx, 'Felhasznált források', cx, 800, 5, 'center');
+  ctx.textAlign = 'left'; let y = 866;
   sp.sources.forEach(s => { ctx.fillStyle = RUBRIC; ctx.font = `600 28px ${F_BODY}`; ctx.fillText('¶', m.x0 + 4, y); ctx.fillStyle = INK; ctx.font = `500 32px ${F_BODY}`; const ls = wrapPlain(ctx, s, m.cw - 40); ls.forEach((l, i) => ctx.fillText(l, m.x0 + 36, y + i * 40)); y += ls.length * 40 + 20; });
-  ctx.textAlign = 'center'; ctx.fillStyle = GOLD_DEEP; ctx.font = `600 24px ${F_DISPLAY}`; drawSpaced(ctx, 'Finis', cx, PAGE_H - 170, 8, 'center'); fleuron(ctx, cx - 70, PAGE_H - 176, 1, 12, GOLD); fleuron(ctx, cx + 70, PAGE_H - 176, 1, 12, GOLD); ctx.textAlign = 'left';
+  ctx.textAlign = 'center'; ctx.fillStyle = GOLD_DEEP; ctx.font = `600 24px ${F_DISPLAY}`; drawSpaced(ctx, 'Finis', cx, PAGE_H - 170, 8, 'center'); fleuron(ctx, cx - 70, PAGE_H - 176, 1, 12, GOLD); fleuron(ctx, cx + 70, PAGE_H - 176, 1, 12, GOLD);
+  ctx.textAlign = 'left';
   return c;
 }
 
